@@ -325,7 +325,7 @@ void histogramequ(Mat &img, Mat img_htg)                       //Ö±·½Í¼¾ùºâº¯Êý£
 }
 Mat BackgroundEqu(Mat &srcImage)                                  //±³¾°¹â¾ùºâ
 {
-	const int subWindowSize = 8;	//×Ó´°¿Ú´óÐ¡
+	const int subWindowSize = 20;	//8
 	//×Ó´°¿Ú»Ò¶È¾ùÖµ
 	Mat subMaskIntensity(srcImage.rows / subWindowSize, srcImage.cols / subWindowSize, CV_8UC1);
 	for (auto i = 0; i < subMaskIntensity.rows; ++i)
@@ -393,16 +393,16 @@ Mat SilTest(Mat &img)
 {
 	int64 timestart = 0, timeend = 0;
 	double t1, t2, t3;
-	int grayThreshold = 45;             //25
+	int grayThreshold = 25;             //25
 	int areaLimit = 6;                 //12
 	Mat img_copy,img_1;
 	img.copyTo(img_copy);
-	//imshow("backgroundequ", img_copy);
+	imshow("backgroundequ", img_copy);
 	timestart = getTickCount();
 	histogramequ(img_copy, img_copy);
 	timeend = getTickCount();
 	t1 = 1000.0*(timeend - timestart) / getTickFrequency();
-	//imshow("htg", img_copy);
+	imshow("htg", img_copy);
 
 	threshold(img_copy, img_copy,grayThreshold, 255, THRESH_BINARY);                              //15            32
 	//imshow("bin", img_copy);
@@ -414,7 +414,8 @@ Mat SilTest(Mat &img)
 	Mat element = getStructuringElement(MORPH_RECT, Size(3, 3));
 	//morphologyEx(img_copy, img_copy, MORPH_CLOSE, element);
 	erode(img_copy, img_1, element);                                          //3
-	RemoveSmallRegion(img_1, img_1, 180, 0, 1);                                  //100                   160
+    cout << "test" << endl;
+	RemoveSmallRegion1(img_1, img_1, 850, 0, 1);                                  //100                   160
 	timestart = timeend;
 	timeend = getTickCount();
 	t3 = 1000.0*(timeend - timestart) / getTickFrequency();
@@ -508,7 +509,7 @@ void detector(Mat &img)
 	//if (argc > 1)
 	//	imgname = argv[1];
 	//Mat img = imread(imgname, 0);
-	//imshow("ori", img);
+	imshow("ori", img);
 	timestart = getTickCount();
 	img = BackgroundEqu(img);
 	timeend = getTickCount();
@@ -517,7 +518,7 @@ void detector(Mat &img)
 	timestart = timeend;
 	timeend = getTickCount();
 	t2 = 1000.0*(timeend - timestart) / getTickFrequency();
-	ISilt(img);
+	//ISilt(img);
 	timestart = timeend;
 	timeend = getTickCount();
 	t3 = 1000.0*(timeend - timestart) / getTickFrequency();

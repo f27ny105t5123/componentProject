@@ -15,7 +15,7 @@ void crackDetector(Mat &srcImage, int *sidePos, double angle);
 int main()
 {
 	clock_t begTime = clock();
-	Mat srcImage = imread("../photo/1.bmp", IMREAD_GRAYSCALE);
+	Mat srcImage = imread("../photo/13.bmp", IMREAD_GRAYSCALE);
 	if(srcImage.empty())
 	{	
 		cout << "Loading image is a failure." << endl;
@@ -54,11 +54,12 @@ int main()
 
 void crackDetector(Mat &srcImage, int *sidePos, double angle)
 {
-	Mat tempImage;
-	srcImage.copyTo(tempImage);
-	angleCalibration(tempImage, angle);
-	Mat crackROI = (tempImage.colRange(sidePos[0] + 30, sidePos[1] - 30)).rowRange(sidePos[2] + 10, sidePos[3] - 30);
-	detector(crackROI);
+	//Mat tempImage;
+	//srcImage.copyTo(tempImage);
+	//angleCalibration(tempImage, angle);
+	//Mat crackROI = (tempImage.colRange(sidePos[0] + 30, sidePos[1] - 30)).rowRange(sidePos[2] + 10, sidePos[3] - 30);
+	//detector(crackROI);
+	detector(srcImage);
 }
 
 
