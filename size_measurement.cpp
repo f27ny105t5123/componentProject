@@ -15,7 +15,7 @@ void crackDetector(Mat &srcImage, int *sidePos, double angle);
 int main()
 {
 	clock_t begTime = clock();
-	Mat srcImage = imread("../imgs/41.2.bmp", IMREAD_GRAYSCALE);
+	Mat srcImage = imread("../photo/1.bmp", IMREAD_GRAYSCALE);
 	if(srcImage.empty())
 	{	
 		cout << "Loading image is a failure." << endl;
@@ -40,8 +40,8 @@ int main()
 				
 		//矩形侧面裂缝检测
 		case 2:
-			angle = getAngle(srcImage, 50);
-			top_measure(srcImage, true, false, sidePos, angle);
+			//angle = getAngle(srcImage, 50);
+			//top_measure(srcImage, true, false, sidePos, angle);
 			crackDetector(srcImage, sidePos, angle);
 			break;
 		default:

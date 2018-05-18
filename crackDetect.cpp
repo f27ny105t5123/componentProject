@@ -502,7 +502,7 @@ void ISilt(Mat &srcImage)
 }
 void detector(Mat &img)
 {
-	int64 timestart = 0, timeend = 0;
+	int timestart = 0, timeend = 0;
 	double t1, t2, t3;
 	//string imgname = "D:\\G disc\\工业视觉检测\\零件11.13\\截\\19.1.bmp";
 	//if (argc > 1)
