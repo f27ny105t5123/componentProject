@@ -1,0 +1,8 @@
+    cmake_minimum_required(VERSION 3.0)  
+    PROJECT(component_project)  
+    add_compile_options(-std=c++11)
+    SET(SRC_LIST size_measurement.cpp rotateImage.cpp crackDetect.cpp)  
+    find_package(OpenCV REQUIRED)  
+    include_directories(${OpenCV_INCLUDE_DIRS})  
+    ADD_EXECUTABLE(demo ${SRC_LIST})  
+    target_link_libraries(demo ${OpenCV_LIBS})
